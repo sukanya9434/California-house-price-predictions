@@ -35,7 +35,7 @@ The project uses the **California Housing dataset** available through Scikit-lea
 ### Model
 
 **Random Forest Regressor**
-```python
+
 RandomForestRegressor(
     n_estimators=100,
     random_state=42
