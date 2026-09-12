@@ -2,8 +2,15 @@ import joblib
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-
+from fastapi.middleware.cors import CORSMiddleware
 app=FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 model=joblib.load('house_model.joblib')
 features=joblib.load("house_features.joblib")
@@ -49,6 +56,7 @@ def predict(house:Housefeatures):
     "Latitude" : house.Latitude,
     "Longitude" : house.Longitude
     }])
+    #prediction
     predicted = model.predict(input_data)[0]
     price_usd= predicted* 100000
 
