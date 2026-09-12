@@ -1,41 +1,80 @@
-# 🏠 California House Price Prediction API
+# 🏠 California House Price Predictor
 
-A machine learning project that predicts California house prices using a **Random Forest Regressor** and exposes the trained model through a **FastAPI REST API**.
+A full-stack machine learning application that predicts the median house value of a California neighborhood using a **Random Forest Regression model**.
 
-## 🚀 Features
+The project combines a **Scikit-learn machine learning model**, **FastAPI backend**, and **Next.js + TypeScript frontend** to provide an interactive house-price prediction experience.
 
-- California Housing dataset from Scikit-learn
-- Random Forest Regression model
-- Train/test split for model evaluation
-- Mean Absolute Error (MAE) and R² score evaluation
-- Saved trained model using Joblib
-- FastAPI backend for predictions
-- Pydantic input validation
-- Interactive API documentation with Swagger UI
-- Health-check endpoint for monitoring the API
+---
 
-## 🛠️ Technologies Used
+## 🚀 Project Overview
 
-- Python
-- Pandas
-- Scikit-learn
-- FastAPI
-- Pydantic
-- Uvicorn
-- Joblib
+The application takes eight characteristics of a California neighborhood as input and uses a trained Random Forest Regressor to estimate its median house value.
 
-## 📂 Project Structure
+### Input Features
 
-```text
-Houseprediction-model/
-│
-├── .vscode/                 # VS Code project settings
-├── venv/                    # Virtual environment (not committed)
-├── .gitignore               # Git ignored files
-│
-├── housing.csv              # Housing dataset
-├── house_model.joblib       # Trained Random Forest model
-├── house_features.joblib    # Model feature names
-│
-├── train.py                 # Model training and evaluation
-├── main.py                  # FastAPI application
+- Median Income (`MedInc`)
+- House Age (`HouseAge`)
+- Average Rooms (`AveRooms`)
+- Average Bedrooms (`AveBedrms`)
+- Population (`Population`)
+- Average Occupancy (`AveOccup`)
+- Latitude (`Latitude`)
+- Longitude (`Longitude`)
+
+The model returns:
+
+- Predicted house price
+- Estimated price range
+
+---
+
+## 🧠 Machine Learning
+
+The project uses the **California Housing dataset** available through Scikit-learn.
+
+### Model
+
+**Random Forest Regressor**
+
+```python
+RandomForestRegressor(
+    n_estimators=100,
+    random_state=42
+)
+
+
+                    ┌─────────────────────┐
+                    │      User           │
+                    │  Enters House Data  │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   Next.js Frontend  │
+                    │ TypeScript + Tailwind│
+                    └──────────┬──────────┘
+                               │
+                            Axios
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   FastAPI Backend   │
+                    │   Pydantic Validation│
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │  Random Forest     │
+                    │     Regressor      │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Prediction Response │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │  Next.js Result UI  │
+                    │   Displays Price    │
+                    └─────────────────────┘
